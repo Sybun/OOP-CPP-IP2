@@ -5,6 +5,7 @@ A fast, augmented Binary Search Tree for storing and querying overlapping interv
 ## Overview
 
 **IntervalTree** efficiently finds which intervals overlap a given range in **O(log n)** time. It's useful for scheduling, memory management, and geometric queries.
+The creation of this project was facilitated by Antropic AI tools.
 
 ## Key Features
 
