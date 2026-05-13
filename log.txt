@@ -1,0 +1,76 @@
+====================================================
+  IntervalTree ADT  —  Automated Test Suite
+====================================================
+------------------------------------------------------------
+  Group A — Insert
+------------------------------------------------------------
+[PASS] A1: insert single valid interval -> size == 1
+[PASS] A2: insert three intervals -> size == 3
+[PASS] A3: operator+= inserts two intervals -> size == 2
+[PASS] A4: insert {9,3} throws InvalidIntervalException
+[PASS] A5: operator+= with lo>hi throws InvalidIntervalException
+[PASS] A6: insert point interval {5,5} is valid
+------------------------------------------------------------
+  Group B — Search (by point and by range)
+------------------------------------------------------------
+[PASS] B1: search(1) finds [1,5]
+[PASS] B2: search(5) finds at least 3 overlapping intervals
+[PASS] B3: search(0) returns empty (no overlap)
+[PASS] B4: search({3,7}) finds at least 3 intervals
+[PASS] B5: search({20,30}) returns empty
+[PASS] B6: search on empty tree returns empty vector
+[PASS] B7: search({8,3}) throws InvalidIntervalException
+------------------------------------------------------------
+  Group C — Delete
+------------------------------------------------------------
+[PASS] C1: remove existing interval -> size decreases
+[PASS] C2: remove non-existent interval throws invalid_argument
+[PASS] C3: operator-= removes interval -> size == 1
+[PASS] C4: remove from empty tree throws invalid_argument
+[PASS] C5: removed interval not found by search
+------------------------------------------------------------
+  Group D — Update
+------------------------------------------------------------
+[PASS] D1: update changes interval; new interval found by search
+[PASS] D2: update with invalid new interval throws InvalidIntervalException
+[PASS] D3: update non-existent interval throws invalid_argument
+[PASS] D4: operator*= updates interval; new interval searchable
+------------------------------------------------------------
+  Group E — Operators
+------------------------------------------------------------
+[PASS] E1: operator! clears tree (isEmpty true, size 0)
+[PASS] E2: operator[0] returns smallest interval [1,4]
+[PASS] E3: operator[2] returns largest interval [6,9]
+[PASS] E4: operator[] out of range throws out_of_range
+[PASS] E5: operator[] negative index throws out_of_range
+------------------------------------------------------------
+  Group F — Comparison operators
+------------------------------------------------------------
+[PASS] F1: operator== trees with identical content -> true
+[PASS] F2: operator== trees with different sizes -> false
+[PASS] F3: operator!= trees with different sizes -> true
+[PASS] F4: operator<  smaller tree < larger tree -> true
+[PASS] F5: operator<= equal trees -> true
+[PASS] F6: operator>  larger tree > smaller tree -> true
+[PASS] F7: operator>= larger tree >= smaller tree -> true
+[PASS] F8: operator>= equal trees -> true
+------------------------------------------------------------
+  Group G — Copy semantics (deep copy)
+------------------------------------------------------------
+[PASS] G1: copy constructor: copy == original
+[PASS] G2: modifying original does not affect copy
+[PASS] G3: modifying copy does not affect original
+[PASS] G4: assignment operator: assigned == original
+[PASS] G5: self-assignment does not corrupt tree
+------------------------------------------------------------
+  Group H — toString and isEmpty
+------------------------------------------------------------
+[PASS] H1: toString on empty tree contains 'empty'
+[PASS] H2: toString mentions '2 interval'
+[PASS] H3: toString contains 'Total span'
+[PASS] H4: freshly constructed tree isEmpty() == true
+[PASS] H5: isEmpty() == false after insert
+[PASS] H6: isEmpty() == true after operator!
+----------------------------------------------------
+  All tests complete.
+====================================================

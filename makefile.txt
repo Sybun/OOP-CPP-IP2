@@ -1,0 +1,67 @@
+# ====================================================================
+#  makefile.txt  —  IntervalTree ADT
+#  Usage:  rename to 'Makefile' and run with 'make <target>'
+#
+#  Targets
+#  -------
+#  a) module     Build IntervalTree.o from IntervalTree.h / .cpp
+#  b) demo       Build the demo executable
+#  c) run_demo   Run the demo
+#  d) test       Build the test executable
+#  e) run_test   Run the tests (writes log.txt)
+#  f) clean      Remove all build artifacts and log.txt
+#  g) rebuild    Clean then build everything from scratch
+# ====================================================================
+
+CXX      = g++
+CXXFLAGS = -std=c++17 -Wall -Wextra -pedantic
+
+# ---------------------------------------------------------------
+#  a) Build module object file
+# ---------------------------------------------------------------
+module: IntervalTree.o
+
+IntervalTree.o: IntervalTree.h IntervalTree.cpp
+	$(CXX) $(CXXFLAGS) -c IntervalTree.cpp -o IntervalTree.o
+
+# ---------------------------------------------------------------
+#  b) Build demo executable
+# ---------------------------------------------------------------
+demo: IntervalTree.o demo.cpp
+	$(CXX) $(CXXFLAGS) IntervalTree.o demo.cpp -o demo
+
+# ---------------------------------------------------------------
+#  c) Run demo
+# ---------------------------------------------------------------
+run_demo: demo
+	./demo
+
+# ---------------------------------------------------------------
+#  d) Build test executable
+# ---------------------------------------------------------------
+test_bin: IntervalTree.o test.cpp
+	$(CXX) $(CXXFLAGS) IntervalTree.o test.cpp -o test_bin
+
+# ---------------------------------------------------------------
+#  e) Run tests  (also regenerates log.txt)
+# ---------------------------------------------------------------
+run_test: test_bin
+	./test_bin
+
+# ---------------------------------------------------------------
+#  f) Clean all build artifacts
+# ---------------------------------------------------------------
+clean:
+	rm -f IntervalTree.o demo test_bin log.txt
+
+# ---------------------------------------------------------------
+#  g) Rebuild everything from scratch
+# ---------------------------------------------------------------
+rebuild: clean module demo test_bin
+
+# ---------------------------------------------------------------
+#  Convenience aliases
+# ---------------------------------------------------------------
+all: module demo test_bin
+
+.PHONY: module demo run_demo test_bin run_test clean rebuild all
